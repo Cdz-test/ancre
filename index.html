@@ -1,0 +1,423 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salorak.fr - Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta name="description" content="Découvre un super site !"></head>
+<body class="bg-gray-50 text-gray-800">
+
+    <nav class="bg-white shadow-md fixed w-full z-10">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-anchor text-blue-500 text-3xl"></i>
+                <span class="ml-3 text-xl font-bold text-gray-700">Salorak.fr</span>
+            </div>
+            <a href="1" data-page-id="6681cb4735c6db118cd10131" id="page-link" class="text-gray-700 hover:text-blue-500">Page 1</a><a href="2" data-page-id="6681d75035c6db118cd11ba8" id="page-link" class="text-gray-700 hover:text-blue-500">tetris</a><div class="hidden md:flex space-x-6">
+                <a href="#about" class="text-gray-700 hover:text-blue-500">About</a>
+                <a href="#services" class="text-gray-700 hover:text-blue-500">Services</a>
+                <a href="#portfolio" class="text-gray-700 hover:text-blue-500">Portfolio</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-500">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="bg-blue-500 text-white h-screen flex items-center justify-center">
+  <div class="text-center">
+  <p class="text-lg mb-6">Empowering businesses with cutting-edge data solutions.</p><h1 class="text-5xl font-bold mb-4">Welcome to the beach</h1>
+  <p class="text-lg mb-6">Empowering businesses with cutting-edge data solutions.</p><p class="text-xl mb-8" id="animatedText">Your ultimate destination for innovative solutions with Alexandrine and Louis, the besty</p><p class="text-lg mb-6">Empowering businesses with cutting-edge data solutions.</p>
+  <a href="#about" class="bg-white text-blue-500 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">Learn More with Alexandrine</a>
+
+  <script>
+let isHovering = false;
+
+function animateWords(elementId) {
+  const element = document.getElementById(elementId);
+  const words = element.innerText.split(' ');
+  element.innerHTML = '';
+
+  words.forEach((word, index) => {
+    const span = document.createElement('span');
+    span.textContent = word;
+    span.style.display = 'inline-block';
+    span.style.transition = 'all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+    span.style.opacity = '0';
+    span.style.transform = 'translateY(40px) rotateX(90deg) scale(0.8)';
+    element.appendChild(span);
+
+    if (index < words.length - 1) {
+      const space = document.createTextNode(' ');
+      element.appendChild(space);
+    }
+
+    span.addEventListener('mouseover', () => {
+      if (!isHovering) {
+        isHovering = true;
+        span.style.transform = 'translateY(-10px) rotateX(-10deg) scale(1.2)';
+        span.style.color = '#00ff00';
+        span.style.textShadow = '0 5px 15px rgba(0, 255, 0, 0.6)';
+      }
+    });
+
+    span.addEventListener('mouseout', () => {
+      if (isHovering) {
+        isHovering = false;
+        span.style.transform = 'translateY(0) rotateX(0) scale(1)';
+        span.style.color = '';
+        span.style.textShadow = '';
+      }
+    });
+
+    setTimeout(() => {
+      span.style.opacity = '1';
+      span.style.transform = 'translateY(0) rotateX(0) scale(1)';
+      
+      const intervalId = setInterval(() => {
+        if (!isHovering) {
+          span.style.transform = 'translateY(-15px) rotateX(-15deg) scale(1.1)';
+          span.style.color = '#00ff00';
+          span.style.textShadow = '0 5px 15px rgba(0, 255, 0, 0.6)';
+        
+          setTimeout(() => {
+            if (!isHovering) {
+              span.style.transform = 'translateY(5px) rotateX(5deg) scale(0.95)';
+              span.style.color = '';
+              span.style.textShadow = '';
+              
+              setTimeout(() => {
+                if (!isHovering) {
+                  span.style.transform = 'translateY(0) rotateX(0) scale(1)';
+                }
+              }, 300);
+            }
+          }, 600);
+        }
+      }, 4000 + index * 150);
+
+      element.addEventListener('mouseleave', () => {
+        isHovering = false;
+      });
+    }, index * 100);
+  });
+}
+
+function loopAnimation(elementId) {
+  const element = document.getElementById(elementId);
+  const words = element.innerText.split(' ');
+
+  animateWords(elementId);
+  setInterval(() => {
+    if (!isHovering) {
+      element.style.transition = 'opacity 0.8s ease, transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(20px) scale(0.9)';
+      setTimeout(() => {
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0) scale(1)';
+        animateWords(elementId);
+      }, 1000);
+    }
+  }, words.length * 4000 + 8000);
+}
+
+loopAnimation('animatedText');
+</script>
+</div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const title = document.getElementById('animatedTitle');
+      const words = title.innerHTML.split(/\s+/);
+      const spanContent = title.querySelector('span').outerHTML;
+      const newWords = words.map(word => {
+        if (word.includes('class="text-yellow-500"')) {
+          return spanContent;
+        }
+        return `<span class="word">${word}</span>`;
+      }).join(' ');
+      title.innerHTML = newWords;
+      
+      const animateWords = () => {
+        const wordSpans = title.querySelectorAll('.word');
+        wordSpans.forEach((span, index) => {
+          setTimeout(() => {
+            span.style.display = 'inline-block';
+            span.animate([
+              { transform: 'translateY(0)', offset: 0 },
+              { transform: 'translateY(-20px)', offset: 0.25 },
+              { transform: 'translateY(0)', offset: 0.5 },
+              { transform: 'translateY(-10px)', offset: 0.75 },
+              { transform: 'translateY(0)', offset: 1 }
+            ], {
+              duration: 1000,
+              easing: 'ease-in-out',
+              fill: 'forwards'
+            });
+          }, index * 200);
+        });
+      };
+
+      animateWords();
+      setInterval(animateWords, words.length * 200 + 1000);
+    });
+  </script>
+  <style>
+    #animatedTitle .word {
+      display: inline-block;
+      transition: transform 0.3s ease-in-out;
+    }
+  </style>
+</section>
+
+    <section id="about" class="py-20 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+    <div class="container mx-auto px-6 relative">
+        <div class="text-center mb-16 relative z-10">
+            <h2 class="text-5xl font-bold text-gray-800 mb-4 animate-fade-in-down">About Us</h2>
+            <p class="text-xl text-gray-600 mt-4 animate-fade-in-up">Discover our journey and passion for You</p>
+        </div>
+        <div class="flex flex-wrap -mx-6 items-center">
+            <div class="w-full lg:w-1/2 px-6 mb-12 lg:mb-0 animate-slide-in-left">
+                <div class="relative overflow-hidden rounded-lg shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://images.unsplash.com/photo-1574864745093-5566c5be5855?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w2MjU1MDF8MHwxfHNlYXJjaHwxOXx8RWd5cHR8ZW58MHwwfHx8MTcxOTc4MTQyM3ww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080" alt="About Us" class="w-full h-auto">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/2 px-6 animate-slide-in-right">
+                <div class="bg-white/80 backdrop-blur-md rounded-xl p-8 shadow-lg">
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-6">Our Alexandrine</h3>
+                    <p class="text-gray-700 mb-8 leading-relaxed">Salorak.fr was founded with a visionary approach to provide cutting-edge solutions and innovative designs to businesses and individuals. Our team of passionate experts is committed to delivering excellence in every project, pushing the boundaries of creativity and technology Louis.</p>
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-6">Our Louis</h3>
+                    <p class="text-gray-700 leading-relaxed">NASA, the National Aeronautics and Space Administration, is a leading government agency dedicated to the exploration and study of space. With a rich history of groundbreaking achievements, NASA has been at the forefront of scientific and technological advancements, pushing the boundaries of human knowledge and capabilities. From the iconic moon landings to the ongoing exploration of the solar system and beyond, NASA's missions have captivated the world and inspired generations of scientists, engineers, and dreamers. With a focus on innovation, research, and international collaboration, NASA continues to drive progress in areas such as Earth observation, climate science, and the development of cutting-edge space technologies. As a beacon of human ingenuity and exploration, NASA remains a symbol of humanity's unwavering spirit to reach for the stars and unravel the mysteries of the universe.</p>
+                </div>
+            </div>
+        </div>
+        <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
+            <div class="absolute top-10 left-10 w-20 h-20 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+            <div class="absolute top-0 right-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+            <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+        </div>
+    </div>
+</section><style>
+@keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); filter: hue-rotate(0deg); }
+    33% { transform: translate(40px, -60px) scale(1.2); filter: hue-rotate(120deg); }
+    66% { transform: translate(-30px, 30px) scale(0.8); filter: hue-rotate(240deg); }
+    100% { transform: translate(0px, 0px) scale(1); filter: hue-rotate(360deg); }
+}
+.animate-blob {
+    animation: blob 10s infinite;
+}
+.animation-delay-2000 {
+    animation-delay: 2.5s;
+}
+.animation-delay-4000 {
+    animation-delay: 5s;
+}
+@keyframes fade-in-down {
+    0% { opacity: 0; transform: translateY(-40px) rotate(-5deg); }
+    100% { opacity: 1; transform: translateY(0) rotate(0deg); }
+}
+@keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(40px) rotate(5deg); }
+    100% { opacity: 1; transform: translateY(0) rotate(0deg); }
+}
+@keyframes slide-in-left {
+    0% { opacity: 0; transform: translateX(-150px) skew(-10deg); }
+    100% { opacity: 1; transform: translateX(0) skew(0deg); }
+}
+@keyframes slide-in-right {
+    0% { opacity: 0; transform: translateX(150px) skew(10deg); }
+    100% { opacity: 1; transform: translateX(0) skew(0deg); }
+}
+.animate-fade-in-down {
+    animation: fade-in-down 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.animate-fade-in-up {
+    animation: fade-in-up 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.animate-slide-in-left {
+    animation: slide-in-left 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.animate-slide-in-right {
+    animation: slide-in-right 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+</style>
+
+    <section id="services" class="py-20 bg-gradient-to-br from-blue-100 to-purple-100 overflow-hidden">
+    <div class="container mx-auto px-6 relative">
+        <div class="text-center mb-16 animate-fade-in-up">
+            <h2 class="text-5xl font-extrabold bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4">Our<span class="text-yellow-500"> baby</span></h2>
+            <p class="text-gray-700 text-xl mt-4 animate-pulse">Explore the wide range of innovative solutions we offer </p>
+        </div>
+        <div class="flex flex-wrap -mx-6 justify-center">
+            <div class="w-full md:w-1/3 px-6 mb-12 md:mb-0 transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-purple-300 p-8 rounded-2xl shadow-2xl text-center hover:shadow-blue-200 transition-shadow duration-300">
+                    <i class="fas fa-paint-brush text-blue-500 text-5xl mb-6 animate-bounce"></i>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Creativia Chris</h3>
+                    <p class="text-gray-600 leading-relaxed">We provide innovative and creative design solutions that help your brand stand out in the Louis</p>
+                </div>
+            </div>
+            <div class="w-full md:w-1/3 px-6 mb-12 md:mb-0 transform hover:scale-105 transition-transform duration-300">
+                <div class="true">
+                    <i class="fas fa-code text-purple-500 text-5xl mb-6 animate-pulse"></i>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Louis</h3>
+                    <p class="text-gray-600 leading-relaxed">Our web development services ensure your website is CHILL, responsive, and delivers an exceptional user experience Alexandrine &amp; Me</p>
+                </div>
+            </div>
+            <div class="w-full md:w-1/3 px-6 transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-white p-8 rounded-2xl shadow-2xl text-center hover:shadow-indigo-200 transition-shadow duration-300">
+                    <i class="fas fa-chart-line text-indigo-500 text-5xl mb-6 animate-bounce"></i>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Digital Bro</h3>
+                    <p class="text-gray-600 leading-relaxed">We offer comprehensive digital marketing strategies to help you reach and engage your target audience effectively and i Love You</p>
+                </div>
+            </div>
+        </div>
+        <div class="absolute -bottom-16 -left-16 w-64 h-64 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div class="absolute -bottom-8 left-80 w-64 h-64 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-8 right-20 w-64 h-64 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+    </div>
+    <script>
+function animateText() {
+    const elements = document.querySelectorAll('#services h2, #services h3, #services p');
+    elements.forEach(element => {
+        const text = element.textContent;
+        element.innerHTML = '';
+        for (let i = 0; i < text.length; i++) {
+            const span = document.createElement('span');
+            span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
+            span.style.display = 'inline-block';
+            span.style.transform = 'translateY(0px)';
+            span.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+            element.appendChild(span);
+        }
+    });
+
+    let counter = 0;
+    const animate = () => {
+        elements.forEach(element => {
+            const spans = element.querySelectorAll('span');
+            spans.forEach((span, index) => {
+                const offset = Math.sin((counter + index) * 0.05) * 5;
+                span.style.transform = `translateY(${offset}px)`;
+            });
+        });
+        counter++;
+        requestAnimationFrame(animate);
+    };
+
+    requestAnimationFrame(animate);
+}
+
+document.addEventListener('DOMContentLoaded', animateText);
+</script>
+</section>
+
+    <section id="portfolio" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-700">Our Portfolio</h2>
+                <p class="text-gray-600 mt-4">Take a look at some of our recent projects.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1607505155281-d7eacabe6c01?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w2MjU1MDF8MHwxfHNlYXJjaHwzfHx0aGVvfGVufDB8MHx8fDE3MTk3ODEzODJ8MA&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080" style="max-width: 100%;">
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-2">Project Title 1</h3>
+                    <p class="text-gray-600">A brief description of the project goes here. Highlight the key features and outcomes.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1607805074889-9b307d788d7b?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w2MjU1MDF8MHwxfHNlYXJjaHw0fHx0aGVvfGVufDB8MHx8fDE3MTk3ODEzODJ8MA&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080" style="max-width: 100%;">
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-2">Project Title 2</h3>
+                    <p class="text-gray-600">A brief description of the project goes here. Highlight the key features and outcomes.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1704485862384-fdd0dc413f47?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w2MjU1MDF8MHwxfHNlYXJjaHw1fHx0aGVvfGVufDB8MHx8fDE3MTk3ODEzODJ8MA&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080" style="max-width: 100%;">
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-2">Project Title 3</h3>
+                    <p class="text-gray-600">A brief description of the project goes here. Highlight the key features and outcomes.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1582965420374-1cf9c04852ce?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w2MjU1MDF8MHwxfHNlYXJjaHwxMnx8bG91aXN8ZW58MHwwfHx8MTcxOTc4MTQwMXww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080" style="max-width: 100%;">
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-2">Project Title 4</h3>
+                    <p class="text-gray-600">A brief description of the project goes here. Highlight the key features and outcomes.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1650355981320-21a9f8dcb776?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w2MjU1MDF8MHwxfHNlYXJjaHw3fHxsb3Vpc3xlbnwwfDB8fHwxNzE5NzgxNDAxfDA&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080" style="max-width: 100%;">
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-2">Project Title 5</h3>
+                    <p class="text-gray-600">A brief description of the project goes here. Highlight the key features and outcomes.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1607805074778-eeb1aafe3641?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w2MjU1MDF8MHwxfHNlYXJjaHw2fHx0aGVvfGVufDB8MHx8fDE3MTk3ODEzODJ8MA&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080" style="max-width: 100%;">
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-2">Project Title 6</h3>
+                    <p class="text-gray-600">A brief description of the project goes here. Highlight the key features and outcomes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-700">Contact Us</h2>
+                <p class="text-gray-600 mt-4">Get in touch with us for any inquiries or collaborations.</p>
+            </div>
+            <div class="flex flex-wrap -mx-6">
+                <div class="w-full md:w-1/2 px-6 mb-12 md:mb-0">
+                    <form>
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-semibold mb-2">Alexandrine</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-semibold mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-600 transition">Send Message</button>
+                    </form>
+                </div>
+                <div class="w-full md:w-1/2 px-6">
+                    <div class="bg-gray-100 p-8 rounded-lg shadow-lg">
+  <h3 class="text-2xl font-semibold text-gray-700 mb-4">Contact Information</h3>
+  <p class="text-gray-600 mb-4">Feel free to reach out to us through any of the following channels:</p>
+  <p class="text-gray-600 mb-2"><i class="fas fa-phone-alt text-blue-500 mr-2"></i> +123 456 7890</p>
+  <p class="text-gray-600 mb-2"><i class="fas fa-envelope text-blue-500 mr-2"></i> info@salorak.fr</p>
+  <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i> 1234 Street Name, City, Country</p>
+  <div class="mt-6">
+    <a href="#" class="text-blue-500 hover:text-blue-600 mr-4"><i class="fab fa-facebook-f text-2xl"></i></a>
+    <a href="#" class="text-blue-500 hover:text-blue-600 mr-4"><i class="fab fa-twitter text-2xl"></i></a>
+    <a href="#" class="text-blue-500 hover:text-blue-600 mr-4"><i class="fab fa-linkedin-in text-2xl"></i></a>
+    <a href="#" class="text-blue-500 hover:text-blue-600"><i class="fab fa-instagram text-2xl"></i></a>
+  </div>
+  <script>
+    const letters = document.querySelectorAll('.selected-element *:not(script)');
+    letters.forEach(letter => {
+      letter.style.display = 'inline-block';
+      letter.style.animation = 'jump 0.5s ease-in-out infinite';
+    });
+    @keyframes jump {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  </script>
+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p>© 2023 Salorak.fr. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+<div style="position: absolute; pointer-events: none; background-color: rgb(206, 229, 237); opacity: 0.6; border-radius: 50px; display: none; z-index: 11;"><div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px; color: green;">+</div></div>   </body></html>
