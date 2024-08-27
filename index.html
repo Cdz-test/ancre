@@ -22,148 +22,47 @@
         </div>
     </nav>
 
-    <section id="hero" class="bg-blue-500 text-white h-screen flex items-center justify-center">
-  <div class="text-center">
-  <p class="text-lg mb-6">Empowering businesses with cutting-edge data solutions.</p><h1 class="text-5xl font-bold mb-4">Welcome to the beach</h1>
-  <p class="text-lg mb-6">Empowering businesses with cutting-edge data solutions.</p><p class="text-xl mb-8" id="animatedText">Your ultimate destination for innovative solutions with Alexandrine and Louis, the besty</p><p class="text-lg mb-6">Empowering businesses with cutting-edge data solutions.</p>
-  <a href="#about" class="bg-white text-blue-500 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">Learn More with Alexandrine</a>
-
-  <script>
-let isHovering = false;
-
-function animateWords(elementId) {
-  const element = document.getElementById(elementId);
-  const words = element.innerText.split(' ');
-  element.innerHTML = '';
-
-  words.forEach((word, index) => {
-    const span = document.createElement('span');
-    span.textContent = word;
-    span.style.display = 'inline-block';
-    span.style.transition = 'all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-    span.style.opacity = '0';
-    span.style.transform = 'translateY(40px) rotateX(90deg) scale(0.8)';
-    element.appendChild(span);
-
-    if (index < words.length - 1) {
-      const space = document.createTextNode(' ');
-      element.appendChild(space);
-    }
-
-    span.addEventListener('mouseover', () => {
-      if (!isHovering) {
-        isHovering = true;
-        span.style.transform = 'translateY(-10px) rotateX(-10deg) scale(1.2)';
-        span.style.color = '#00ff00';
-        span.style.textShadow = '0 5px 15px rgba(0, 255, 0, 0.6)';
-      }
-    });
-
-    span.addEventListener('mouseout', () => {
-      if (isHovering) {
-        isHovering = false;
-        span.style.transform = 'translateY(0) rotateX(0) scale(1)';
-        span.style.color = '';
-        span.style.textShadow = '';
-      }
-    });
-
-    setTimeout(() => {
-      span.style.opacity = '1';
-      span.style.transform = 'translateY(0) rotateX(0) scale(1)';
-      
-      const intervalId = setInterval(() => {
-        if (!isHovering) {
-          span.style.transform = 'translateY(-15px) rotateX(-15deg) scale(1.1)';
-          span.style.color = '#00ff00';
-          span.style.textShadow = '0 5px 15px rgba(0, 255, 0, 0.6)';
-        
-          setTimeout(() => {
-            if (!isHovering) {
-              span.style.transform = 'translateY(5px) rotateX(5deg) scale(0.95)';
-              span.style.color = '';
-              span.style.textShadow = '';
-              
-              setTimeout(() => {
-                if (!isHovering) {
-                  span.style.transform = 'translateY(0) rotateX(0) scale(1)';
-                }
-              }, 300);
-            }
-          }, 600);
-        }
-      }, 4000 + index * 150);
-
-      element.addEventListener('mouseleave', () => {
-        isHovering = false;
-      });
-    }, index * 100);
-  });
-}
-
-function loopAnimation(elementId) {
-  const element = document.getElementById(elementId);
-  const words = element.innerText.split(' ');
-
-  animateWords(elementId);
-  setInterval(() => {
-    if (!isHovering) {
-      element.style.transition = 'opacity 0.8s ease, transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-      element.style.opacity = '0';
-      element.style.transform = 'translateY(20px) scale(0.9)';
-      setTimeout(() => {
-        element.style.opacity = '1';
-        element.style.transform = 'translateY(0) scale(1)';
-        animateWords(elementId);
-      }, 1000);
-    }
-  }, words.length * 4000 + 8000);
-}
-
-loopAnimation('animatedText');
-</script>
-</div>
+    <section id="hero" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white h-screen flex items-center justify-center">
+  <div class="text-center px-4 sm:px-6 lg:px-8">
+    <div class="text-lg mb-6">
+      <span class="word">Empowering</span> <span class="word">businesses</span> <span class="word">with</span> <span class="word">cutting-edge</span> <span class="word">data</span> <span class="word">solutions.</span>
+    </div>
+    <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-4">
+      <span class="word">Welcome</span> <span class="word">to</span> <span class="word">the</span> <span class="word">future</span> <span class="word">of</span> <span class="word">data</span>
+    </h1>
+    <div class="text-lg mb-8">
+      <span class="word">Innovative</span> <span class="word">solutions</span> <span class="word">crafted</span> <span class="word">with</span> <span class="word">passion</span> <span class="word">by</span> <span class="word">Alexandrine</span> <span class="word">&amp;</span> <span class="word">Louis</span>
+    </div>
+    <a href="#about" class="bg-white text-blue-500 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition duration-300 ease-in-out transform hover:scale-105">Learn More</a>
+  </div>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const title = document.getElementById('animatedTitle');
-      const words = title.innerHTML.split(/\s+/);
-      const spanContent = title.querySelector('span').outerHTML;
-      const newWords = words.map(word => {
-        if (word.includes('class="text-yellow-500"')) {
-          return spanContent;
-        }
-        return `<span class="word">${word}</span>`;
-      }).join(' ');
-      title.innerHTML = newWords;
-      
-      const animateWords = () => {
-        const wordSpans = title.querySelectorAll('.word');
-        wordSpans.forEach((span, index) => {
-          setTimeout(() => {
-            span.style.display = 'inline-block';
-            span.animate([
-              { transform: 'translateY(0)', offset: 0 },
-              { transform: 'translateY(-20px)', offset: 0.25 },
-              { transform: 'translateY(0)', offset: 0.5 },
-              { transform: 'translateY(-10px)', offset: 0.75 },
-              { transform: 'translateY(0)', offset: 1 }
-            ], {
-              duration: 1000,
-              easing: 'ease-in-out',
-              fill: 'forwards'
-            });
-          }, index * 200);
-        });
-      };
-
-      animateWords();
-      setInterval(animateWords, words.length * 200 + 1000);
+      const words = document.querySelectorAll('.word');
+      words.forEach((word, index) => {
+        word.style.display = 'inline-block';
+        word.style.opacity = 0;
+        setTimeout(() => {
+          word.style.opacity = 1;
+          word.animate([
+            { transform: 'translateY(20px)', opacity: 0 },
+            { transform: 'translateY(0)', opacity: 1 }
+          ], {
+            duration: 800,
+            delay: index * 100,
+            easing: 'ease-out'
+          });
+        }, 500);
+      });
     });
   </script>
   <style>
-    #animatedTitle .word {
-      display: inline-block;
-      transition: transform 0.3s ease-in-out;
+    .word {
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .word:hover {
+      transform: translateY(-10px) scale(1.1);
+      color: #00ff00;
+      text-shadow: 0 5px 15px rgba(0, 255, 0, 0.6);
     }
   </style>
 </section>
